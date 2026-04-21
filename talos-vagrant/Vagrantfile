@@ -1,0 +1,38 @@
+TALOS_VERSION = "v1.12.6"
+SCHEMATIC_ID  = "376567988ad370138ad8b2698212367b8edcb69b5fd68c80be1f2ec7d603b4ba"
+ISO_PATH      = "/tmp/metal-amd64.iso"
+
+CONTROL_PLANES = 3
+WORKERS        = 2
+
+Vagrant.configure("2") do |config|
+  config.vm.synced_folder ".", "/vagrant", disabled: true
+
+  (1..CONTROL_PLANES).each do |i|
+    config.vm.define "talos-cp-#{i}" do |cp|
+      cp.vm.communicator = :none
+      cp.vm.provider :libvirt do |lv|
+        lv.memory  = 2048
+        lv.cpus    = 2
+        lv.storage :file, :device => :cdrom, :path => ISO_PATH
+        lv.storage :file, :size => "10G", :type => "qcow2", :bus => "virtio"
+        lv.boot "hd"
+        lv.boot "cdrom"
+      end
+    end
+  end
+
+  (1..WORKERS).each do |i|
+    config.vm.define "talos-worker-#{i}" do |worker|
+      worker.vm.communicator = :none
+      worker.vm.provider :libvirt do |lv|
+        lv.memory  = 2048
+        lv.cpus    = 2
+        lv.storage :file, :device => :cdrom, :path => ISO_PATH
+        lv.storage :file, :size => "10G", :type => "qcow2", :bus => "virtio"
+        lv.boot "hd"
+        lv.boot "cdrom"
+      end
+    end
+  end
+end
