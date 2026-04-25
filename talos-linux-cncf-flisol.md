@@ -640,6 +640,39 @@ strong { color: #00E6CC; font-weight: 700; }
 
 ---
 <!-- _paginate: false -->
+<style scoped>
+section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 100%;
+}
+h2 {
+  font-size: 2.2em;
+  color: #00E6CC;
+  margin-bottom: 0.4rem;
+}
+h3 {
+  font-size: 1.1em;
+  color: #F8FAFC;
+  opacity: 0.85;
+  margin-bottom: 1.5rem;
+  font-weight: 400;
+}
+</style>
+
+## 🎁 Sorteio 4Linux
+
+### Participe escaneando o QR code!
+
+![height:340px](images/qrcode-sorteio.png)
+
+`sorteio.4linux.com.br/event/9a39d268`
+
+---
+<!-- _paginate: false -->
 
 ## Obrigado!
 
